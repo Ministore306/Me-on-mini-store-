@@ -386,3 +386,971 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me on Mini Store</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #fcf8f7; color: #333; padding-bottom: 60px; }
+        header { background-color: #fff; padding: 20px; text-align: center; border-bottom: 1px solid #f0e2df; position: sticky; top: 0; z-index: 100; }
+        header h1 { font-size: 24px; color: #bc4749; letter-spacing: 1px; }
+        
+        /* Category Navigation */
+        .categories { display: flex; justify-content: center; gap: 20px; padding: 20px 10px; background-color: #fff; margin-bottom: 20px; border-bottom: 1px solid #f0e2df; overflow-x: auto; }
+        .category-card { display: flex; flex-direction: column; align-items: center; cursor: pointer; min-width: 70px; }
+        .cat-img { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid #bc4749; background-color: #fff; }
+        .category-card span { font-size: 13px; font-weight: 600; color: #555; }
+        
+        /* Product Grid */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .product-card { background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #f0e2df; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-image { width: 100%; height: 160px; object-fit: contain; border-radius: 8px; background-color: #fafafa; margin-bottom: 10px; }
+        .product-name { font-size: 14px; font-weight: 600; color: #444; min-height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+        .product-price { font-size: 15px; font-weight: 700; color: #bc4749; margin-bottom: 10px; }
+        .add-cart-btn { width: 100%; background-color: #bc4749; color: white; border: none; padding: 8px 0; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        
+        /* Hidden class for filtering */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ME-ON® COSMETICS</h1>
+    </header>
+
+    <!-- Categories Tab -->
+    <div class="categories">
+        <div class="category-card" onclick="filterCategory('all')">
+            <div class="cat-img" style="background-color: #bc4749;"></div>
+            <span>All</span>
+        </div>
+        <div class="category-card" onclick="filterCategory('face')">
+            <img src="photoface-primer-328.jpg" alt="Face" class="cat-img">
+            <span>Face</span>
+        </div>
+        <div class="category-card" onclick="filterCategory('lips')">
+            <img src="01_red_rich.jpg" alt="Lips" class="cat-img">
+            <span>Lips</span>
+        </div>
+        <div class="category-card" onclick="filterCategory('eyes')">
+            <img src="glam-stroke-pen.jpg" alt="Eyes" class="cat-img">
+            <span>Eyes</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="product-grid" id="productGrid">
+
+            <!-- ================= FACE CATEGORY ================= -->
+            <div class="product-card" data-category="face">
+                <img src="high-cover-compact-320.jpg" alt="High Cover Compact" class="product-image">
+                <div class="product-name">High Cover Compact (320)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="hd-compact-321.jpg" alt="HD Compact 2IN1" class="product-image">
+                <div class="product-name">HD Compact 2IN1 (321)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="oil-control-compact-322.jpg" alt="Oil Control Compact 2IN1" class="product-image">
+                <div class="product-name">Oil Control Compact 2IN1 (322)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <!-- AAPKI PHLI PHOTO IDHAR SET HO GAYI HAI -->
+            <div class="product-card" data-category="face">
+                <img src="photoface-primer-328.jpg" alt="Photoface Primer HD Compact" class="product-image">
+                <div class="product-name">Photoface Primer HD Compact (328)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="high-coverage-compact-329.jpg" alt="High coverage compact 2in1" class="product-image">
+                <div class="product-name">High coverage compact 2in1 (329)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="studio-compact-330.jpg" alt="Studio Compact Powder" class="product-image">
+                <div class="product-name">Studio Compact Powder (330)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="ultra-hd-compact-331.jpg" alt="Ultra HD Double Compact Powder" class="product-image">
+                <div class="product-name">Ultra HD Double Compact Powder (331)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="superlast-compact-332.jpg" alt="Superlast compact 2in1" class="product-image">
+                <div class="product-name">Superlast compact 2in1 (332)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="photoface-loose-powder.jpg" alt="Photoface Loose Powder" class="product-image">
+                <div class="product-name">Photoface Loose Powder (LP03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="banana-powder.jpg" alt="Banana Powder" class="product-image">
+                <div class="product-name">Banana Powder (LP01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="super-fix-finishing-powder.jpg" alt="Super fix HD Finishing Powder" class="product-image">
+                <div class="product-name">Super fix HD Finishing Powder (CP111)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="high-coverage-foundation.jpg" alt="High Coverage Foundation" class="product-image">
+                <div class="product-name">High Coverage Foundation (INS30)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="ultra-hd-foundation.jpg" alt="Ultra HD Foundation" class="product-image">
+                <div class="product-name">Ultra HD Foundation (INS60)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="studio-foundation.jpg" alt="Studio Foundation" class="product-image">
+                <div class="product-name">Studio Foundation (INS70)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="exquisite-foundation.jpg" alt="Exquisite Foundation" class="product-image">
+                <div class="product-name">Exquisite Foundation (INS80)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="high-definition-foundation.jpg" alt="High Definition Foundation" class="product-image">
+                <div class="product-name">High Definition Foundation (INS100)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="photoface-mousse-foundation.jpg" alt="Photoface Mousse Foundation" class="product-image">
+                <div class="product-name">Photoface Mousse Foundation (INS120)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="superlast-foundation.jpg" alt="Superlast Foundation" class="product-image">
+                <div class="product-name">Superlast Foundation (INS130)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <!-- AAPKI TEESRI PHOTO IDHAR SET HO GAYI HAI -->
+            <div class="product-card" data-category="face">
+                <img src="02_11_cbeb5992-4807-4841-9894-3aaea524eb59.jpg" alt="Photoface Color Changing Foundation" class="product-image">
+                <div class="product-name">Photoface Color Changing Foundation (INS150)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="bb-oil-control-foundation.jpg" alt="BB Oil Control Foundation" class="product-image">
+                <div class="product-name">BB Oil Control Foundation (BB01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="bb-foundation-small.jpg" alt="BB Foundation Small" class="product-image">
+                <div class="product-name">BB Foundation Small (BB02)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="superlast-primer.jpg" alt="Superlast Primer" class="product-image">
+                <div class="product-name">Superlast Primer (FP01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="strobe-cream-primer.jpg" alt="Strobe Cream Primer" class="product-image">
+                <div class="product-name">Strobe Cream Primer (FP03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="24k-gold-primer.jpg" alt="24K GOLD FACE PRIMER" class="product-image">
+                <div class="product-name">24K GOLD FACE PRIMER (FP07)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="makeup-fixer.jpg" alt="Makeup Fixer Non Illuminating" class="product-image">
+                <div class="product-name">Makeup Fixer Non Illuminating (MF01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="makeup-fixer-illuminating.jpg" alt="Makeup Fixer Illuminator" class="product-image">
+                <div class="product-name">Makeup Fixer Illuminator (MF01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="makeup-fixer-ultra-matte.jpg" alt="Makeup Fixer Ultra Matte" class="product-image">
+                <div class="product-name">Makeup Fixer Ultra Matte (MF01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="shimmer-me-up.jpg" alt="SHIMMER ME UP" class="product-image">
+                <div class="product-name">SHIMMER ME UP (MF03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="panstick-concealer.jpg" alt="Panstick Concealer" class="product-image">
+                <div class="product-name">Panstick Concealer (2114)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="oil-control-concealer.jpg" alt="Oil Control Concealer" class="product-image">
+                <div class="product-name">Oil Control Concealer (2115)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="superlast-liquid-concealer.jpg" alt="SUPERLAST LIQUID CONCEALER" class="product-image">
+                <div class="product-name">SUPERLAST LIQUID CONCEALER (INS11)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="sculpt-corrector-palette.jpg" alt="SCULPT CORRECTOR PALETTE" class="product-image">
+                <div class="product-name">SCULPT CORRECTOR PALETTE (C10)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="pro-sculpt.jpg" alt="Pro Sculpt" class="product-image">
+                <div class="product-name">Pro Sculpt (C6)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="rose-gold-serum.jpg" alt="Rose Gold Serum" class="product-image">
+                <div class="product-name">Rose Gold Serum (M0018)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="vitamin-c-serum.jpg" alt="Vitamin C Serum" class="product-image">
+                <div class="product-name">Vitamin C Serum (FS01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="hyaluronic-serum.jpg" alt="Hyaluronic Serum" class="product-image">
+                <div class="product-name">Hyaluronic Serum (FS02)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="anti-ageing-serum.jpg" alt="Anti Ageing Serum" class="product-image">
+                <div class="product-name">Anti Ageing Serum (FS03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="vitamin-c-cream.jpg" alt="Vitamin C Cream" class="product-image">
+                <div class="product-name">Vitamin C Cream (FC01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="anti-ageing-cream.jpg" alt="Anti Ageing Cream" class="product-image">
+                <div class="product-name">Anti Ageing Cream (FC-02)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="sunscreen.jpg" alt="Sunscreen" class="product-image">
+                <div class="product-name">Sunscreen (FC-03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="aqua-blast-moisturizer.jpg" alt="Aqua Blast Moisturizer" class="product-image">
+                <div class="product-name">Aqua Blast Moisturizer (FC05)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="tone-up-cream.jpg" alt="One Step Makeup Tone Up Cream" class="product-image">
+                <div class="product-name">One Step Makeup Tone Up Cream (FC08)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="glow-shimmer-brick.jpg" alt="Glow Shimmer Brick Palette" class="product-image">
+                <div class="product-name">Glow Shimmer Brick Palette (P3)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="spotlight-blush.jpg" alt="SPOTLIGHT BLUSH PALETTE" class="product-image">
+                <div class="product-name">SPOTLIGHT BLUSH PALETTE (P8)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <!-- AAPKI DOOSRI PHOTO IDHAR SET HO GAYI HAI -->
+            <div class="product-card" data-category="face">
+                <img src="01_02.jpg" alt="Blushin Crème Cushion" class="product-image">
+                <div class="product-name">Blushin Crème Cushion (BL01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="cheeky-glow-blush.jpg" alt="CHEEKY GLOW BLUSH & HIGHLIGHTER" class="product-image">
+                <div class="product-name">CHEEKY GLOW BLUSH & HIGHLIGHTER (BL06)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="lit-gradation-blush.jpg" alt="LIT Gradation Blush" class="product-image">
+                <div class="product-name">LIT Gradation Blush (LIT01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="infinity-blush.jpg" alt="Infinity Blush Palette" class="product-image">
+                <div class="product-name">Infinity Blush Palette (P11)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="photoface-ultra-blush.jpg" alt="photoface ultra blush palette" class="product-image">
+                <div class="product-name">Photoface Ultra Blush Palette (BL08)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="so-cheeky-highlight.jpg" alt="SO Cheeky Highligh Blush Contour" class="product-image">
+                <div class="product-name">SO Cheeky Highligh Blush Contour (BL03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="blush-glow-highlighter.jpg" alt="Blush & Glow Highlighter" class="product-image">
+                <div class="product-name">Blush & Glow Highlighter (P8 NEW)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="glow-highlighter.jpg" alt="Glow Highlighter Palette" class="product-image">
+                <div class="product-name">Glow Highlighter Palette (H3)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="photoface-liquid-highlighter.jpg" alt="Photoface Liquid Highlighter" class="product-image">
+                <div class="product-name">Photoface Liquid Highlighter (LH01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="sweet-cheeks-blush.jpg" alt="Sweet Cheeks Blush" class="product-image">
+                <div class="product-name">Sweet Cheeks Blush (BL04)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="baked-hd-highlighter.jpg" alt="Baked HD Highlighter" class="product-image">
+                <div class="product-name">Baked HD Highlighter (HL03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="makeup-remover-spray.jpg" alt="Makeup Remover Spray" class="product-image">
+                <div class="product-name">Makeup Remover Spray (MR02)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="nail-remover-pad.jpg" alt="Nail Polish Remover Pad" class="product-image">
+                <div class="product-name">Nail Polish Remover Pad (NPR01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="nose-strips.jpg" alt="Nose Strips" class="product-image">
+                <div class="product-name">Nose Strips (NS-01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="wax-strips.jpg" alt="Hair Removal Wax Strip" class="product-image">
+                <div class="product-name">Hair Removal Wax Strip (HWS-01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="facewash.jpg" alt="Face Wash" class="product-image">
+                <div class="product-name">Face Wash (FW01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="longwear-nail.jpg" alt="Longwear Nail Color" class="product-image">
+                <div class="product-name">Longwear Nail Color (NP111)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="one-coat-nail.jpg" alt="One Coat" class="product-image">
+                <div class="product-name">One Coat (NP333)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="insta-nail.jpg" alt="INSTA NAIL" class="product-image">
+                <div class="product-name">INSTA NAIL (NP666)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="hair-spray.jpg" alt="Ultra Fix Hair Spray" class="product-image">
+                <div class="product-name">Ultra Fix Hair Spray (HS01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="megastar-kit.jpg" alt="Megastar Kit" class="product-image">
+                <div class="product-name">Megastar Kit (Kit001)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="obsession-kit.jpg" alt="Obsession" class="product-image">
+                <div class="product-name">Obsession Kit (KIT004)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="superstar-kit.jpg" alt="Superstar" class="product-image">
+                <div class="product-name">Superstar Kit (KIT005)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="flawless-forever-kit.jpg" alt="Flawless Forever" class="product-image">
+                <div class="product-name">Flawless Forever Kit (KIT006)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="ecstacy-kit.jpg" alt="Ecstacy" class="product-image">
+                <div class="product-name">Ecstacy Kit (KIT008)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="princess-kit.jpg" alt="Princess Makeup Palette" class="product-image">
+                <div class="product-name">Princess Makeup Palette (KIT010)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="glimmer-eyes-kit.jpg" alt="Glimmer Eyes" class="product-image">
+                <div class="product-name">Glimmer Eyes Kit (KIT010)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="pretty-girl-kit.jpg" alt="Pretty Girl" class="product-image">
+                <div class="product-name">Pretty Girl Kit (KIT012)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="iconic-kit.jpg" alt="Iconic" class="product-image">
+                <div class="product-name">Iconic Kit (KIT013)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="color-play-kit.jpg" alt="Color Play" class="product-image">
+                <div class="product-name">Color Play Kit (KIT014)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="beauty-in-bloom-kit.jpg" alt="Beauty in Bloom" class="product-image">
+                <div class="product-name">Beauty in Bloom Kit (KIT017)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="liquid-sindoor.jpg" alt="Liquid Sindoor" class="product-image">
+                <div class="product-name">Liquid Sindoor (M0011)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="face">
+                <img src="brush-set-03.jpg" alt="Set03 Brush Master 15pcs" class="product-image">
+                <div class="product-name">Set03 Brush Master 15pcs (Brush Kit)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+
+            <!-- ================= LIPS CATEGORY ================= -->
+            <div class="product-card" data-category="lips">
+                <img src="01_red_rich.jpg" alt="SuperLast 24H Matte Liquid Lipstick" class="product-image">
+                <div class="product-name">SuperLast 24H Matte Liquid Lipstick</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="rich-mat-lipstick.jpg" alt="Rich Mat" class="product-image">
+                <div class="product-name">Rich Mat (6+1) (LS666)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="matte-vogue.jpg" alt="Matte Vogue" class="product-image">
+                <div class="product-name">Matte Vogue (6+1) (LS369)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="superlast-lipstick.jpg" alt="Superlast" class="product-image">
+                <div class="product-name">Superlast (6+1) (JC023)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="superlast-liquid-lipstick.jpg" alt="Superlast Liquid Lipstick" class="product-image">
+                <div class="product-name">Superlast Liquid Lipstick (6+1) (LG01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="photoface-lipstick.jpg" alt="PHOTOFACE LIPSTICK" class="product-image">
+                <div class="product-name">PHOTOFACE LIPSTICK (6+1) (LG05)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="artistry-lipliner.jpg" alt="Artristry Lipliner Pencil" class="product-image">
+                <div class="product-name">Artristry Lipliner Pencil (M0007)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="lip-cheek-tint.jpg" alt="Lip & Cheek Tint" class="product-image">
+                <div class="product-name">Lip & Cheek Tint (LC01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="photoface-lip-crayon.jpg" alt="Photoface Lip Crayon" class="product-image">
+                <div class="product-name">Photoface Lip Crayon (LS06)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="marshmallow-lip.jpg" alt="Marshmallow" class="product-image">
+                <div class="product-name">Marshmallow (LG06)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="gloss-and-plump.jpg" alt="Gloss and Plump" class="product-image">
+                <div class="product-name">Gloss and Plump (LG07)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="lippops-lipstick.jpg" alt="Lippops Non Transfer Lipstick" class="product-image">
+                <div class="product-name">Lippops Non Transfer Lipstick (LS09)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="photoface-matte-lipstick.jpg" alt="Photoface Matte Lipstick" class="product-image">
+                <div class="product-name">Photoface Matte Lipstick (LS03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="lipfinity-palette.jpg" alt="LIPFINITY Lip Color Palette" class="product-image">
+                <div class="product-name">LIPFINITY Lip Color Palette (L10)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="sugar-jelly-lipstick.jpg" alt="Lip Sugar Jelly Lipstick" class="product-image">
+                <div class="product-name">Lip Sugar Jelly Lipstick (JL01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="ph-lip-oil.jpg" alt="pH Lip Oil" class="product-image">
+                <div class="product-name">pH Lip Oil (11+1) (LG09)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="tint-me-balm.jpg" alt="Tint Me" class="product-image">
+                <div class="product-name">Tint Me (LB01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="duo-lip-balm.jpg" alt="DUO lip Balm" class="product-image">
+                <div class="product-name">DUO lip Balm (LB02)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="lip-whip.jpg" alt="Lip Whip" class="product-image">
+                <div class="product-name">Lip Whip (M0012 LW)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="color-suede.jpg" alt="Color Suede" class="product-image">
+                <div class="product-name">Color Suede (M0012 CS)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="matte-mania.jpg" alt="Matte Mania" class="product-image">
+                <div class="product-name">Matte Mania (M0012 MN)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="liquid-suede.jpg" alt="Liquid Suede" class="product-image">
+                <div class="product-name">Liquid Suede (M0012)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="mattitude.jpg" alt="Mattitude" class="product-image">
+                <div class="product-name">Mattitude (M0012)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="matte-muse.jpg" alt="MatteMuse" class="product-image">
+                <div class="product-name">MatteMuse (M0012)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="charming-creme.jpg" alt="Charming Crème Lipstick" class="product-image">
+                <div class="product-name">Charming Crème Lipstick (LS123)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="inshade-lipstick.jpg" alt="Inshade" class="product-image">
+                <div class="product-name">Inshade (LSB18)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="luscious-matte.jpg" alt="Luscious Matte Lipstick" class="product-image">
+                <div class="product-name">Luscious Matte Lipstick (LS02)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="matte-mist.jpg" alt="Matte Mist" class="product-image">
+                <div class="product-name">Matte Mist (LS04)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="matte-bites.jpg" alt="Matte Bites" class="product-image">
+                <div class="product-name">Matte Bites (LS05)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="matte-mood.jpg" alt="Matte Mood" class="product-image">
+                <div class="product-name">Matte Mood (LS07)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="mattractive.jpg" alt="Mattractive" class="product-image">
+                <div class="product-name">Mattractive (LS08)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="lipfluid.jpg" alt="Lipfluid" class="product-image">
+                <div class="product-name">Lipfluid (LG04)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="lips">
+                <img src="matte-bullet.jpg" alt="Matte Bullet" class="product-image">
+                <div class="product-name">Matte Bullet (LG05)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+
+            <!-- ================= EYES CATEGORY ================= -->
+            <div class="product-card" data-category="eyes">
+                <img src="glam-stroke-pen.jpg" alt="Glam Stroke Pen" class="product-image">
+                <div class="product-name">Glam Stroke Pen (PL01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="pen-eyeliner.jpg" alt="Pen Eyeliner" class="product-image">
+                <div class="product-name">Pen Eyeliner (M0008)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="charming-eyeliner.jpg" alt="Charming Eyeliner" class="product-image">
+                <div class="product-name">Charming Eyeliner (M0005)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="ultra-eyeliner.jpg" alt="Ultra Eyeliner" class="product-image">
+                <div class="product-name">Ultra Eyeliner (555 New)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="tip-eyeliner.jpg" alt="Tip Eyeliner" class="product-image">
+                <div class="product-name">Tip Eyeliner (6634)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="photoface-eyeliner.jpg" alt="Photoface Eyeliner" class="product-image">
+                <div class="product-name">Photoface Eyeliner (EL01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="charming-mascara.jpg" alt="Charming Mascara" class="product-image">
+                <div class="product-name">Charming Mascara (M0006)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="ultra-lash-mascara.jpg" alt="Ulta lash Volum Mascara" class="product-image">
+                <div class="product-name">Ulta lash Volum Mascara (666 New)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="photoface-mascara.jpg" alt="Photoface Mascara" class="product-image">
+                <div class="product-name">Photoface Mascara (EM01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="superlast-mascara.jpg" alt="Superlast Volume Mascara" class="product-image">
+                <div class="product-name">Superlast Volume Mascara (EM02)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="auto-kohl-kajal.jpg" alt="Auto Kohl KAJAL" class="product-image">
+                <div class="product-name">Auto Kohl KAJAL (333)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="auto-kohl-kajal-packing.jpg" alt="Auto Kohl KAJAL IN PACKING" class="product-image">
+                <div class="product-name">Auto Kohl KAJAL IN PACKING (333)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="photoface-auto-kajal.jpg" alt="Photoface Auto Kajal" class="product-image">
+                <div class="product-name">Photoface Auto Kajal (EP333)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="illusion-auto-kajal.jpg" alt="Illusion Auto Kajal" class="product-image">
+                <div class="product-name">Illusion Auto Kajal (EP777)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="jewel-gel-kajal.jpg" alt="Jewel Gel Kajal" class="product-image">
+                <div class="product-name">Jewel Gel Kajal (111)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="9-essential-eyeshadow.jpg" alt="9 ESSENTIAL COLOR EYESHADOW" class="product-image">
+                <div class="product-name">9 ESSENTIAL COLOR EYESHADOW (ES01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="shade-snatcher.jpg" alt="SHADE SNATCHER" class="product-image">
+                <div class="product-name">SHADE SNATCHER (ES02)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="marvellous-eyeshadow.jpg" alt="Marvellous" class="product-image">
+                <div class="product-name">Marvellous (Es03)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="mesmereyes.jpg" alt="Mesmereyes" class="product-image">
+                <div class="product-name">Mesmereyes (ES04)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="photoface-diamond-eyeshadow.jpg" alt="Photoface Diamond Eyeshadow" class="product-image">
+                <div class="product-name">Photoface Diamond Eyeshadow (ES05)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="mood-xoxo.jpg" alt="Mood XOXO" class="product-image">
+                <div class="product-name">Mood XOXO (ES06)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="fantasy-eyeshadow.jpg" alt="Fantasy 24 Color Eyeshadow" class="product-image">
+                <div class="product-name">Fantasy 24 Color Eyeshadow (ES07)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="perfection-eyeshadow.jpg" alt="Perfection 25 Color eyeshadow" class="product-image">
+                <div class="product-name">Perfection 25 Color eyeshadow (ES08)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="9-color-eyeshadow.jpg" alt="9 COLOR EYESHADOW" class="product-image">
+                <div class="product-name">9 COLOR EYESHADOW (ES10)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="photoface-artist-eyeshadow.jpg" alt="Photoface 48 Color Artist Eyeshadow" class="product-image">
+                <div class="product-name">Photoface 48 Color Artist Eyeshadow (ES11)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="pixel-pop.jpg" alt="PIXEL POP" class="product-image">
+                <div class="product-name">PIXEL POP (ES12)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="romantic-love.jpg" alt="Romantic Love" class="product-image">
+                <div class="product-name">Romantic Love (ES13)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="time-to-shine.jpg" alt="Time to Shine" class="product-image">
+                <div class="product-name">Time to Shine (ES15)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="we-are-coco-girl.jpg" alt="We're coco girl" class="product-image">
+                <div class="product-name">We're coco girl (ES16)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="glitter-liquid-eyeshadow.jpg" alt="Glitter Liquid Eyeshadow" class="product-image">
+                <div class="product-name">Glitter Liquid Eyeshadow (LEO01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="eyebrow-pencil.jpg" alt="Eyebrow Pencil" class="product-image">
+                <div class="product-name">Eyebrow Pencil (EB222)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="brow-me-up.jpg" alt="Brow Me Up" class="product-image">
+                <div class="product-name">Brow Me Up (EB111)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="dream-brows.jpg" alt="Dream Brows" class="product-image">
+                <div class="product-name">Dream Brows (EB333)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="eyebrow-razor.jpg" alt="Eyebrow Razer" class="product-image">
+                <div class="product-name">Eyebrow Razer (Er-01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="eyelashes-10pcs.jpg" alt="Eyelashes 10PCS SET" class="product-image">
+                <div class="product-name">Eyelashes 10PCS SET (EL666)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="eyelashes-single.jpg" alt="Eyelashes" class="product-image">
+                <div class="product-name">Eyelashes (EL777)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+            <div class="product-card" data-category="eyes">
+                <img src="lash-fixer.jpg" alt="Lash Fixer" class="product-image">
+                <div class="product-name">Lash Fixer (LF01)</div>
+                <div class="product-price">Price: --</div>
+                <button class="add-cart-btn">Buy Now</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+    </html>
