@@ -134,3 +134,278 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me on Mini Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #fcf8f7; color: #333; padding-bottom: 60px; }
+        header { background-color: #fff; padding: 20px; text-align: center; border-bottom: 1px solid #f0e2df; position: sticky; top: 0; z-index: 100; }
+        header h1 { font-size: 24px; color: #bc4749; letter-spacing: 1px; }
+        
+        /* Category Navigation */
+        .categories { display: flex; justify-content: center; gap: 20px; padding: 20px 10px; background-color: #fff; margin-bottom: 20px; border-bottom: 1px solid #f0e2df; overflow-x: auto; }
+        .category-card { display: flex; flex-direction: column; align-items: center; cursor: pointer; min-width: 70px; }
+        .cat-img { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; border: 2px solid #bc4749; background-color: #fff; }
+        .category-card span { font-size: 13px; font-weight: 600; color: #555; }
+        
+        /* Product Grid */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+        .product-card { background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #f0e2df; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-image { width: 100%; height: 150px; object-fit: contain; border-radius: 8px; background-color: #fafafa; margin-bottom: 10px; }
+        .product-name { font-size: 14px; font-weight: 600; color: #444; min-height: 40px; margin-bottom: 8px; }
+        .product-price { font-size: 15px; font-weight: 700; color: #bc4749; margin-bottom: 8px; }
+        
+        /* Shade and Qty Controls on Card */
+        .product-options { margin-bottom: 10px; }
+        .shade-select { width: 100%; padding: 6px; border-radius: 6px; border: 1px solid #ccc; font-size: 12px; margin-bottom: 8px; background-color: #fff; }
+        .qty-container { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; }
+        .qty-btn { background: #f0e2df; border: none; width: 28px; height: 28px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 16px; }
+        .qty-val { font-weight: 600; font-size: 14px; width: 20px; text-align: center; }
+
+        .add-cart-btn { width: 100%; background-color: #bc4749; color: white; border: none; padding: 10px 0; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .add-cart-btn:hover { background-color: #a33b3d; }
+
+        /* Floating Cart Icon */
+        .cart-icon-float { position: fixed; right: 20px; bottom: 80px; background: #bc4749; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; }
+        .cart-count { position: absolute; top: 0; right: 0; background: #333; color: white; font-size: 12px; padding: 4px 8px; border-radius: 50%; }
+
+        /* Side Cart Panel */
+        #sideCart { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 2000; transition: 0.4s; padding: 20px; display: flex; flex-direction: column; }
+        #sideCart.active { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        #cartItems { flex-grow: 1; overflow-y: auto; }
+        
+        /* Cart Item Design */
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; align-items: center; border-bottom: 1px solid #f9f9f9; padding-bottom: 10px; }
+        .cart-item-details { flex-grow: 1; margin-right: 10px; }
+        .cart-item-qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+        
+        .cart-total { padding-top: 20px; border-top: 2px solid #eee; font-weight: bold; font-size: 18px; margin-bottom: 20px; }
+        .whatsapp-btn { background-color: #25D366; color: white; text-decoration: none; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; cursor: pointer; display: block; border: none; width: 100%; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <header><h1>ME-ON® COSMETICS</h1></header>
+
+    <div class="categories">
+        <div class="category-card" onclick="filterCategory('all')"><div class="cat-img" style="background-color: #bc4749;"></div><span>All</span></div>
+        <div class="category-card" onclick="filterCategory('face')"><img src="photoface-primer-328.jpg" alt="Face" class="cat-img"><span>Face</span></div>
+        <div class="category-card" onclick="filterCategory('lips')"><img src="01_red_rich.jpg" alt="Lips" class="cat-img"><span>Lips</span></div>
+        <div class="category-card" onclick="filterCategory('eyes')"><img src="glam-stroke-pen.jpg" alt="Eyes" class="cat-img"><span>Eyes</span></div>
+    </div>
+
+    <!-- Floating Cart Button -->
+    <div class="cart-icon-float" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- Side Cart -->
+    <div id="sideCart">
+        <div class="cart-header">
+            <h3>My Shopping Bag</h3>
+            <span onclick="toggleCart()" style="font-size: 24px; cursor: pointer;">&times;</span>
+        </div>
+        <div id="cartItems"><!-- Cart items loaded here --></div>
+        <div class="cart-total">Total: ₹<span id="totalPrice">0</span></div>
+        <button class="whatsapp-btn" onclick="checkoutWhatsApp()">
+            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="product-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card" data-category="face" id="p1">
+                <img src="photoface-primer-328.jpg" class="product-image">
+                <div class="product-name">Photoface Primer HD Compact (328)</div>
+                <div class="product-price">₹450</div>
+                <div class="product-options">
+                    <select class="shade-select">
+                        <option value="Shade 01">Shade 01</option>
+                        <option value="Shade 02">Shade 02</option>
+                        <option value="Shade 03">Shade 03</option>
+                    </select>
+                    <div class="qty-container">
+                        <button class="qty-btn" onclick="changeCardQty('p1', -1)">-</button>
+                        <span class="qty-val" id="qty-p1">1</span>
+                        <button class="qty-btn" onclick="changeCardQty('p1', 1)">+</button>
+                    </div>
+                </div>
+                <button class="add-cart-btn" onclick="addToCart('p1', 'Photoface Primer 328', 450)">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card" data-category="face" id="p2">
+                <img src="02_11_cbeb5992-4807-4841-9894-3aaea524eb59.jpg" class="product-image">
+                <div class="product-name">Photoface Color Changing Foundation (INS150)</div>
+                <div class="product-price">₹550</div>
+                <div class="product-options">
+                    <select class="shade-select">
+                        <option value="Light Ivory">Light Ivory</option>
+                        <option value="Natural Beige">Natural Beige</option>
+                        <option value="Warm Sand">Warm Sand</option>
+                    </select>
+                    <div class="qty-container">
+                        <button class="qty-btn" onclick="changeCardQty('p2', -1)">-</button>
+                        <span class="qty-val" id="qty-p2">1</span>
+                        <button class="qty-btn" onclick="changeCardQty('p2', 1)">+</button>
+                    </div>
+                </div>
+                <button class="add-cart-btn" onclick="addToCart('p2', 'Color Changing Foundation', 550)">Add to Cart</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card" data-category="face" id="p3">
+                <img src="01_02.jpg" class="product-image">
+                <div class="product-name">Blushin Crème Cushion (BL01)</div>
+                <div class="product-price">₹350</div>
+                <div class="product-options">
+                    <select class="shade-select">
+                        <option value="Pink Blush">Pink Blush</option>
+                        <option value="Peach Glow">Peach Glow</option>
+                        <option value="Coral Tint">Coral Tint</option>
+                    </select>
+                    <div class="qty-container">
+                        <button class="qty-btn" onclick="changeCardQty('p3', -1)">-</button>
+                        <span class="qty-val" id="qty-p3">1</span>
+                        <button class="qty-btn" onclick="changeCardQty('p3', 1)">+</button>
+                    </div>
+                </div>
+                <button class="add-cart-btn" onclick="addToCart('p3', 'Blushin Crème Cushion', 350)">Add to Cart</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        const myNumber = "919876543210"; // <--- APNA WHATSAPP NUMBER IDHAR CHANGE KAREIN
+
+        function toggleCart() {
+            document.getElementById('sideCart').classList.toggle('active');
+        }
+
+        // Product Card par Qty change karne ke liye
+        function changeCardQty(productId, change) {
+            const qtyElement = document.getElementById(`qty-${productId}`);
+            let currentQty = parseInt(qtyElement.innerText);
+            currentQty += change;
+            if (currentQty < 1) currentQty = 1;
+            qtyElement.innerText = currentQty;
+        }
+
+        // Cart mein add karne ka function
+        function addToCart(id, name, price) {
+            const card = document.getElementById(id);
+            const shade = card.querySelector('.shade-select').value;
+            const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
+
+            // Agar same item aur same shade pehle se cart mein hai toh qty badha do
+            const existingItem = cart.find(item => item.name === name && item.shade === shade);
+            if (existingItem) {
+                existingItem.qty += qty;
+            } else {
+                cart.push({ name, price, shade, qty });
+            }
+
+            // Reset card qty back to 1
+            document.getElementById(`qty-${id}`).innerText = 1;
+
+            updateCart();
+            if(!document.getElementById('sideCart').classList.contains('active')) {
+                toggleCart();
+            }
+        }
+
+        // Cart ke andar quantity badhane/ghatane ke liye
+        function changeCartQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty < 1) {
+                cart.splice(index, 1);
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            const list = document.getElementById('cartItems');
+            const totalDisp = document.getElementById('totalPrice');
+            const countDisp = document.getElementById('cartCount');
+            list.innerHTML = '';
+            let total = 0;
+            let totalItems = 0;
+
+            cart.forEach((item, i) => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                totalItems += item.qty;
+
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <b>${item.name}</b><br>
+                            <small style="color:#666">Shade: ${item.shade}</small><br>
+                            <span style="color:#bc4749; font-weight:600">₹${item.price}</span>
+                            <div class="cart-item-qty-controls">
+                                <button class="qty-btn" onclick="changeCartQty(${i}, -1)">-</button>
+                                <span class="qty-val">${item.qty}</span>
+                                <button class="qty-btn" onclick="changeCartQty(${i}, 1)">+</button>
+                            </div>
+                        </div>
+                        <i class="fas fa-trash" onclick="removeItem(${i})" style="cursor:pointer; color:#ccc; font-size: 16px;"></i>
+                    </div>
+                `;
+            });
+
+            totalDisp.innerText = total;
+            countDisp.innerText = totalItems;
+        }
+
+        function removeItem(i) {
+            cart.splice(i, 1);
+            updateCart();
+        }
+
+        // WhatsApp Checkout Logic
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Aapka cart abhi khali hai!");
+                return;
+            }
+
+            let msg = "✨ *NEW ORDER RECEIVED* ✨\n\n";
+            let total = 0;
+            
+            cart.forEach((item, i) => {
+                const itemTotal = item.price * item.qty;
+                msg += `*${i+1}. ${item.name}*\n`;
+                msg += `   🎨 Shade/No: ${item.shade}\n`;
+                msg += `   🔢 Qty: ${item.qty} x ₹${item.price}\n`;
+                msg += `   💰 Subtotal: ₹${itemTotal}\n\n`;
+                total += itemTotal;
+            });
+            
+            msg += `──────────────────\n`;
+            msg += `🛍️ *Total Order Amount: ₹${total}*`;
+            
+            window.open(`https://wa.me/${myNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function filterCategory(category) {
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) card.classList.remove('hidden');
+                else card.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
