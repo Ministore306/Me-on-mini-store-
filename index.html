@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me on Mini Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FAF6F0;
+            color: #5A4A42;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #FFFFFF;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(224, 182, 172, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #D4A373;
+            letter-spacing: 2px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #FFF0ED 0%, #F6DFD7 100%);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            color: #7A5C53;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 30px 5% 10px;
+        }
+
+        .cat-btn {
+            background-color: #FFFFFF;
+            color: #7A5C53;
+            border: 1px solid #E0B6AC;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background-color: #E0B6AC;
+            color: #FFFFFF;
+        }
+
+        /* Store Container */
+        .store-container {
+            padding: 30px 5% 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(224, 182, 172, 0.15);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 230px;
+            background-color: #FFF5F3;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #C0A9A3;
+            font-style: italic;
+        }
+
+        .product-name {
+            font-size: 18px;
+            color: #5A4A42;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #D4A373;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .add-cart-btn {
+            background-color: #E0B6AC;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .add-cart-btn:hover {
+            background-color: #D4A373;
+        }
+
+        /* Form Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(90, 74, 66, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #FFFFFF;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 22px;
+            cursor: pointer;
+            color: #9C847D;
+        }
+
+        .modal h3 {
+            color: #7A5C53;
+            margin-bottom: 5px;
+        }
+
+        .modal p {
+            font-size: 14px;
+            color: #9C847D;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #5A4A42;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #E0B6AC;
+            border-radius: 8px;
+            background-color: #FAF6F0;
+            color: #5A4A42;
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        .submit-btn {
+            background-color: #D4A373;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #E0B6AC;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #FFF0ED;
+            padding: 40px 5%;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid #F6DFD7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ME ON MINI STORE</div>
+    </header>
+
+    <section class="hero">
+        <h1>Glow Every Day</h1>
+        <p>Premium Collection of Me on Cosmetics</p>
+    </section>
+
+    <!-- Categories Filter -->
+    <div class="categories">
+        <button class="cat-btn active" onclick="filterCategory('all')">All Products</button>
+        <button class="cat-btn" onclick="filterCategory('face')">Face</button>
+        <button class="cat-btn" onclick="filterCategory('lips')">Lips</button>
+    </div>
+
+    <main class="store-container">
+        <div class="products-grid">
+            
+            <!-- Product 1 (Face) -->
+            <div class="product-card" data-category="face">
+                <div class="product-image">Me on Primer Image</div>
+                <div class="product-name">Me on Primer</div>
+                <div class="product-price">₹225</div>
+                <button class="add-cart-btn" onclick="openOrderModal('Me on Primer', '₹499')">Add to Cart / Buy</button>
+            </div>
+
+            <!-- Product 2 (Face) -->
+            <div class="product-card" data-category="face">
+                <div class="product-image">Me on Foundation Image</div>
+                <div class="product-name">Me on Foundation</div>
+                <div class="product-price">₹699</div>
+                <button class="add-cart-btn" onclick="openOrderModal('Me on Foundation', '₹699')">Add to Cart / Buy</button>
+            </div>
+
+            <!-- Product 3 (Lips) -->
+            <div class="product-card" data-category="lips">
+                <div class="product-image">Me on Lipstick Image</div>
+                <div class="product-name">Me on Matte Lipstick</div>
+                <div class="product-price">₹349</div>
+                <button class="add-cart-btn" onclick="openOrderModal('Me on Matte Lipstick', '₹349')">Add to Cart / Buy</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Order Form Modal Popup -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+            <h3>Checkout Details</h3>
+            <p id="selectedProductDetails" style="font-weight: bold; color: #D4A373;"></p>
+            
+            <div class="form-group">
+                <label>Aapka Naam (Your Name)</label>
+                <input type="text" id="custName" placeholder="Enter your name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Delivery Address</label>
+                <textarea id="custAddress" placeholder="Enter complete delivery address" required></textarea>
+            </div>
+            
+            <button class="submit-btn" onclick="sendWhatsAppOrder()">Confirm Order on WhatsApp</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Me on Mini Store. All Rights Reserved.</p>
+        <p>Contact: +91 7078146776</p>
+    </footer>
+
+    <script>
+        let currentProduct = "";
+        let currentPrice = "";
+        const myWhatsAppNumber = "917078146776"; // Aapka number international format mein
+
+        // Open Modal
+        function openOrderModal(name, price) {
+            currentProduct = name;
+            currentPrice = price;
+            document.getElementById('selectedProductDetails').innerText = `${name} - ${price}`;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        // Close Modal
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+            document.getElementById('custName').value = '';
+            document.getElementById('custAddress').value = '';
+        }
+
+        // Send Details to WhatsApp
+        function sendWhatsAppOrder() {
+            const name = document.getElementById('custName').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+
+            if(name === "" || address === "") {
+                alert("Please fill in your Name and Address.");
+                return;
+            }
+
+            // Text structuring for WhatsApp message
+            const message = `Hello! I want to order from your store:%0A%0A` +
+                            `*Product:* ${currentProduct}%0A` +
+                            `*Price:* ${currentPrice}%0A%0A` +
+                            `*Customer Details:*%0A` +
+                            `• Name: ${name}%0A` +
+                            `• Delivery Address: ${address}`;
+
+            const whatsappUrl = `https://wa.me/${myWhatsAppNumber}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+            closeOrderModal();
+        }
+
+        // Category Filter Logic
+        function filterCategory(category) {
+            // Update active button styling
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
